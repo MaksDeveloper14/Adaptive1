@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Навигационная панель</title>
+	<script src="https://kit.fontawesome.com/e5a4af56a0.js" crossorigin="anonymous"></script>
+	<style type="text/css">
+		body {
+			margin: 0;
+			padding: 0;
+			box-sizing: border-box;
+		}
+		ul {
+			margin: 0;
+			padding: 0;
+			list-style: none;
+		}
+		a {
+			text-decoration: none;
+			color: black;
+		}
+		h1,h2,h3,h4,h5,h6 {
+			margin: 0;
+		}
+
+		.container {
+			width: 1170px;
+			margin: 0 auto;
+		}
+
+		/* Start Бургер меню */
+
+		.hamburger-menu {
+			display: none;
+		}
+		#menu__toggle {
+  		opacity: 0;
+		}
+		#menu__toggle:checked ~ .menu__btn > span {
+		  transform: rotate(45deg);
+		}
+		#menu__toggle:checked ~ .menu__btn > span::before {
+		  top: 0;
+		  transform: rotate(0);
+		  background-color: black;
+		}
+		#menu__toggle:checked ~ .menu__btn > span::after {
+		  top: 0;
+		  transform: rotate(90deg);
+		  background-color: black;
+		}
+		#menu__toggle:checked ~ .menu__box {
+		  visibility: visible;
+		  left: 0;
+		}
+		.menu__btn {
+		  display: flex;
+		  align-items: center;
+		  position: fixed;
+		  top: 20px;
+		  /*left: 20px;*/
+		  right: 20px;
+		  width: 26px;
+		  height: 26px;
+		  cursor: pointer;
+		  z-index: 1;
+		}
+		.menu__btn > span,
+		.menu__btn > span::before,
+		.menu__btn > span::after {
+		  display: block;
+		  position: absolute;
+		  width: 100%;
+		  height: 2px;
+		  background-color: #e4e7ed;
+		  transition-duration: .25s;
+		}
+		.menu__btn > span::before {
+		  content: '';
+		  top: -8px;
+		}
+		.menu__btn > span::after {
+		  content: '';
+		  top: 8px;
+		}
+
+		.menu__box {		  
+			display: block;
+		  position: fixed;
+		  visibility: hidden;
+		  top: 0;
+		  left: -100%;
+		  width: 100%;
+		  height: 100%;
+		  margin: 0;
+		  padding: 80px 0;
+		  list-style: none;
+		  background-color: #ECEFF1;
+		  box-shadow: 1px 0px 6px rgba(0, 0, 0, .2);
+		  transition-duration: .25s;
+		}
+
+		.menu__item {
+		  display: block;
+		  padding: 12px 24px;
+		  color: #333;
+		  font-family: 'Roboto', sans-serif;
+		  font-size: 20px;
+		  font-weight: 600;
+		  text-decoration: none;
+		  transition-duration: .25s;
+		}
+		.menu__item:hover {
+		  background-color: #CFD8DC;
+		}
+
+		/* End Бургер меню */
+
+		.fa-bold {
+			background-color: white;
+		}
+		.header {
+			/*min-height: 100vh;*/
+		}
+		.header__top {
+			display: flex;
+			justify-content: space-between;
+			align-items: center;
+			background-color: #6f42c1;
+			padding: 20px 20px;
+		}
+		.header__logo {
+			display: block;
+		}
+		.header__logo-icon {
+			font-size: 18px;
+			padding: 7px 12px;
+			border-radius: 10px;
+		}
+		.header__nav {
+		}
+		.header__list {
+			display: flex;
+		}
+		.header__list-item {
+			margin-left: 50px;
+		}
+		.header__list-link {
+		}
+		.header__main {
+		}
+		.header__main-body {
+			padding-top: 40px;
+			display: flex;
+			justify-content: space-between;
+			align-items: center;
+		}
+		.header__content {
+		}
+		.header__title {
+			font-size: 70px;
+		}
+		.header__text {
+			font-size: 30px;
+		}
+		.header__btn {
+		}
+		.header__description {
+		}
+		.header__version {
+		}
+		.header__versions {
+		}
+		.header__image {
+			width: 400px;
+			height: 350px;
+		}
+		@media screen and (max-width: 1300px) {
+			.container {
+				width: 980px;
+			}
+		}
+		@media screen and (max-width: 1080px) {
+			.container {
+				width: 90%;
+			}
+			.header__main-body {
+				flex-wrap: wrap;
+				text-align: center;
+			}
+			.header__image {
+				margin: 0 auto;
+				margin-top: 70px;
+			}
+		}
+		@media screen and (max-width: 720px) {
+			.header__title {
+				font-size: 50px;
+			}
+			.header__text {
+				font-size: 25px;
+			}
+			.header__image {
+				width: 350px;
+				height: 300px;
+			}
+		}
+		@media screen and (max-width: 500px) {
+			.header__nav {
+				display: none;
+			}
+			.hamburger-menu {
+				display: block;
+			}
+		}
+		@media screen and (max-width: 430px) {
+			.header__image {
+				width: 250px;
+				height: 200px;
+			}
+		}
+	</style>
+</head>
+<body>
+
+	<!-- Бургер Меню -->
+
+	<header class="header">
+		<div class="header__top">
+			<a href="index.html" class="header__logo">
+				<i class="header__logo-icon fa fa-bold" aria-hidden="true"></i>
+			</a>
+			<div class="hamburger-menu">
+		    <input id="menu__toggle" type="checkbox" />
+		    <label class="menu__btn" for="menu__toggle">
+		    	<span></span>
+		    </label>
+		    <ul class="menu__box">
+		      <li><a class="menu__item" href="#">Главная</a></li>
+					<li><a class="menu__item" href="#">Проекты</a></li>
+					<li><a class="menu__item" href="#">Команда</a></li>
+					<li><a class="menu__item" href="#">Блог</a></li>
+					<li><a class="menu__item" href="#">Контакты</a></li>
+		    </ul>
+			</div>
+			<nav class="header__nav">
+				<ul class="header__list">
+					<li class="header__list-item">
+						<a href="index.html" class="header__list-link">Главная</a>
+					</li>
+					<li class="header__list-item">
+						<a href="#" class="header__list-link">О нас</a>
+					</li>
+					<li class="header__list-item">
+						<a href="#" class="header__list-link">Услуги</a>
+					</li>
+					<li class="header__list-item">
+						<a href="#" class="header__list-link">Контакты</a>
+					</li>
+				</ul>
+			</nav>
+		</div>
+		<div class="header__main">
+			<div class="container">
+				<div class="header__main-body">
+					<div class="header__content">
+						<h1 class="header__title">Создание быстрых, отзывчивых сайтов с Bootstrap</h1>
+						<p class="header__text">Быстрое создание и настройка адаптивных сайтов с помощью Bootstrap, - самого популярного в мире инструментария с открытым исходным кодом, включающего переменные Sass и миксины, адаптивную систему сеток и множество готовых компонентов и плагинов JavaScript.</p>
+						<a href="#" class="header__btn">Начало работы</a>
+						<a href="#" class="header__btn">Скачать</a>
+						<div class="header__description">
+							<a href="#" class="header__version">Текущая версия v5.1.3</a>
+							<a href="#" class="header__version">v4.6.x</a>
+							<a href="#" class="header__versions">Все релизы</a>
+						</div>
+					</div>
+					<img src="image1.jpg" alt="" class="header__image">
+				</div>
+			</div>
+		</div>
+	</header>
+</body>
+</html>
